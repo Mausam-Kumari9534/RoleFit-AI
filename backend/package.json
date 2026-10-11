@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node tests/test_phase1.js && node tests/test_http_endpoints.js && node tests/test_end_to_end_analysis.js"
   },
   "keywords": [],
   "author": "",
@@ -12,12 +12,17 @@
   "dependencies": {
     "@google/genai": "^2.11.0",
     "bcryptjs": "^3.0.3",
+    "cookie-parser": "^1.4.7",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
+    "express-rate-limit": "^8.7.0",
+    "google-auth-library": "^10.9.1",
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.7.4",
     "multer": "^2.2.0",
-    "pdf-parse": "^2.4.5"
+    "nodemailer": "^10.0.14",
+    "pdf-parse": "^2.4.5",
+    "resend": "^6.32.0"
   }
 }

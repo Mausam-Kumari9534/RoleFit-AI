@@ -4,11 +4,10 @@ const { GoogleGenAI } = require('@google/genai');
 // Assumes GEMINI_API_KEY is set in environment variables
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
-// Model fallback chain: Try preferred models first, then stable/older models
+// Model fallback chain: Try verified active models first
 const MODELS_TO_TRY = [
-    'gemini-3-flash-preview',
-    'gemini-3-pro-preview',
     'gemini-3.5-flash',
+    'gemini-3.5-flash-lite',
     'gemini-flash-latest'
 ];
 
@@ -23,11 +22,18 @@ const executeGemini = async (prompt, isJson = true) => {
                 contents: prompt,
             });
 
-            let text = response.text;
+            let text = response.text || '';
             
             if (isJson) {
-                text = text.replace(/```json/g, '').replace(/```/g, '').trim();
-                return JSON.parse(text);
+                // Strip markdown code fences if present
+                let clean = text.replace(/```json/gi, '').replace(/```/g, '').trim();
+                // Find first '{' and last '}' to handle any conversational text
+                const firstBrace = clean.indexOf('{');
+                const lastBrace = clean.lastIndexOf('}');
+                if (firstBrace !== -1 && lastBrace !== -1) {
+                    clean = clean.substring(firstBrace, lastBrace + 1);
+                }
+                return JSON.parse(clean);
             }
             return text;
             
@@ -55,7 +61,7 @@ const executeGemini = async (prompt, isJson = true) => {
     } else if (status === 429 || msg.includes('429') || msg.toLowerCase().includes('quota')) {
         errorMessage = "AI is temporarily unavailable because the API quota has been exceeded.";
     } else if (status === 404 || msg.includes('404')) {
-        errorMessage = "AI models are not supported for this account.";
+        errorMessage = "The requested AI models are not available for this account.";
     } else if (status === 503 || msg.includes('503') || msg.toLowerCase().includes('high demand')) {
         errorMessage = "AI is temporarily unavailable due to high API demand.";
     }

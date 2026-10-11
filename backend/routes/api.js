@@ -1,24 +1,69 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
-const { analyzeResume } = require('../controllers/analyzeController');
+const rateLimit = require('express-rate-limit');
+const reportController = require('../controllers/reportController');
 const actionController = require('../controllers/actionController');
-
 const builderController = require('../controllers/builderController');
 const { protect } = require('../middleware/authMiddleware');
 
-// Multer setup to store files in memory for ephemeral processing
+// Ephemeral memory storage for PDF processing
 const storage = multer.memoryStorage();
-const upload = multer({ storage: storage });
+const upload = multer({
+    storage: storage,
+    limits: {
+        fileSize: 5 * 1024 * 1024 // 5MB limit
+    },
+    fileFilter: (req, file, cb) => {
+        if (file.mimetype === 'application/pdf' || file.originalname.toLowerCase().endsWith('.pdf')) {
+            cb(null, true);
+        } else {
+            cb(new Error('Only PDF resume files are accepted.'), false);
+        }
+    }
+});
 
-router.post('/analyze-resume', upload.single('resume'), analyzeResume);
+// Rate limiter for AI analysis to protect resources
+const analyzeLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 20, // 20 requests per window
+    message: { 
+        success: false, 
+        error: 'Too many analysis requests. Please try again after a few minutes.' 
+    }
+});
 
-// Action Routes (JSON payloads)
-router.post('/action/optimize-resume', actionController.optimizeResume);
-router.post('/action/generate-cover-letter', actionController.generateCoverLetter);
-router.post('/action/prepare-interview', actionController.prepareInterview);
+// 1. Core Resume Analysis & Report Routes
+router.post(
+    '/analyze-resume', 
+    protect, 
+    analyzeLimiter, 
+    (req, res, next) => {
+        upload.single('resume')(req, res, (err) => {
+            if (err instanceof multer.MulterError) {
+                if (err.code === 'LIMIT_FILE_SIZE') {
+                    return res.status(400).json({ success: false, error: 'Resume file size exceeds the 5MB limit.' });
+                }
+                return res.status(400).json({ success: false, error: err.message });
+            } else if (err) {
+                return res.status(400).json({ success: false, error: err.message });
+            }
+            next();
+        });
+    },
+    reportController.analyzeResume
+);
 
-// Builder Routes
+router.get('/reports', protect, reportController.getReports);
+router.get('/reports/:id', protect, reportController.getReportById);
+router.delete('/reports/:id', protect, reportController.deleteReport);
+
+// 2. Action Routes (JSON payloads)
+router.post('/action/optimize-resume', protect, actionController.optimizeResume);
+router.post('/action/generate-cover-letter', protect, actionController.generateCoverLetter);
+router.post('/action/prepare-interview', protect, actionController.prepareInterview);
+
+// 3. Builder Routes
 router.route('/resume-builder/drafts')
     .get(protect, builderController.getDrafts)
     .post(protect, builderController.saveDraft);
