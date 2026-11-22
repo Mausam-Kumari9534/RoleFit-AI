@@ -117,10 +117,18 @@ const GoogleAuthPanel = ({ mode = 'login' }) => {
   // Initialize Google Identity Services
   useEffect(() => {
     let isMounted = true;
-    const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+    const rawClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID || import.meta.env.REACT_APP_GOOGLE_CLIENT_ID || '';
+    const clientId = typeof rawClientId === 'string' ? rawClientId.trim() : '';
 
-    if (!clientId) {
-      setError('Google Client ID is missing. Please configure VITE_GOOGLE_CLIENT_ID.');
+    const isValidClientId = Boolean(
+      clientId &&
+      clientId !== 'undefined' &&
+      clientId !== 'null' &&
+      !clientId.includes('your_google_oauth_client_id')
+    );
+
+    if (!isValidClientId) {
+      setError('Google Client ID is missing. Please configure VITE_GOOGLE_CLIENT_ID in your environment variables.');
       return;
     }
 
@@ -151,6 +159,7 @@ const GoogleAuthPanel = ({ mode = 'login' }) => {
         return true;
       } catch (err) {
         console.error('[GIS Initialization Error]:', err);
+        setError('Failed to initialize Google Sign-In. Please check your network and configuration.');
         return false;
       }
     };

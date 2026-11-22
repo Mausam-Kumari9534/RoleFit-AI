@@ -588,8 +588,8 @@ exports.googleAuth = async (req, res) => {
                 email_verified: true
             };
         } else {
-            const googleClientId = process.env.GOOGLE_CLIENT_ID;
-            if (!googleClientId || googleClientId.includes('your_google_client_id_here')) {
+            const googleClientId = (process.env.GOOGLE_CLIENT_ID || process.env.VITE_GOOGLE_CLIENT_ID || '').trim();
+            if (!googleClientId || googleClientId.includes('your_google_client_id_here') || googleClientId.includes('your_google_oauth_client_id')) {
                 console.error('[GoogleAuth Error] GOOGLE_CLIENT_ID is not configured in environment variables');
                 return res.status(500).json({
                     success: false,
