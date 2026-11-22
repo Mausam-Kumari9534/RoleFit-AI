@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import Logo from '../components/Logo';
 import { 
   ArrowRight, 
   Sparkles, 
@@ -28,7 +29,7 @@ const LandingPage = () => {
   const faqs = [
     {
       question: 'How is the compatibility score calculated?',
-      answer: 'JobFit AI calculates your score using a documented 4-pillar methodology: Technical Skills Alignment (40%), ATS Keyword Coverage (30%), Role Experience Relevance (20%), and Format Readability (10%). It represents an advisory compatibility estimate, not an employer ATS prediction.'
+      answer: 'RoleFit AI calculates your score using a documented 4-pillar methodology: Technical Skills Alignment (40%), ATS Keyword Coverage (30%), Role Experience Relevance (20%), and Format Readability (10%). It represents an advisory compatibility estimate, not an employer ATS prediction.'
     },
     {
       question: 'What file formats are supported in Phase 1?',
@@ -39,12 +40,12 @@ const LandingPage = () => {
       answer: 'Your resume is processed in ephemeral server memory and is never exposed through public URLs. Saved reports are protected by server-side resource ownership so only your authenticated account can ever view them.'
     },
     {
-      question: 'Why does JobFit AI use Google-only authentication?',
+      question: 'Why does RoleFit AI use Google-only authentication?',
       answer: 'Google Identity Services provides fast, verified, passwordless sign-in. You never need to remember passwords or worry about credential compromises.'
     },
     {
       question: 'Does the AI fabricate qualifications or work history?',
-      answer: 'No. JobFit AI is explicitly constrained to suggest enhancements grounded strictly in your existing work experience, projects, and skills. We do not invent companies, degrees, or certifications.'
+      answer: 'No. RoleFit AI is explicitly constrained to suggest enhancements grounded strictly in your existing work experience, projects, and skills. We do not invent companies, degrees, or certifications.'
     }
   ];
 
@@ -59,16 +60,17 @@ const LandingPage = () => {
           <div className="lg:col-span-7 space-y-6 text-left">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-white border border-[#BAE6FD] text-[#0284C7] shadow-2xs">
               <Sparkles className="h-3.5 w-3.5 text-[#0284C7]" />
-              <span>AI Resume & Job Description Compatibility</span>
+              <span>AI-Powered Career & Resume Intelligence Platform</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#0F172A] leading-[1.12]">
-              Make Your Resume <br className="hidden sm:inline" />
-              <span className="text-[#0284C7]">Work Smarter.</span>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#0F172A] leading-[1.15]">
+              Understand Your Fit. <br className="hidden sm:inline" />
+              <span className="bg-gradient-to-r from-[#0284C7] via-[#2563EB] to-[#7C3AED] bg-clip-text text-transparent">Bridge Your Skill Gaps.</span> <br className="hidden sm:inline" />
+              <span>Get Job-Ready.</span>
             </h1>
 
             <p className="text-lg sm:text-xl text-[#475569] leading-relaxed max-w-xl">
-              Compare your resume with a job description, discover skill gaps, and get actionable AI-powered recommendations.
+              RoleFit AI objectively evaluates your resume against target job requirements, surfaces critical skill gaps, optimizes ATS keywords, and provides tailored action plans.
             </p>
 
             {/* CTAs */}
@@ -210,7 +212,7 @@ const LandingPage = () => {
               Product Preview
             </h2>
             <h3 className="text-2xl sm:text-3xl font-extrabold text-[#0F172A]">
-              Inside a Genuine JobFit AI Report
+              Inside a Genuine RoleFit AI Report
             </h3>
             <p className="text-sm text-[#475569] mt-2">
               Every analysis breaks down your resume into actionable, recruiter-focused dimensions.
@@ -351,7 +353,7 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* 3. REAL PROBLEMS JOBFIT AI SOLVES */}
+      {/* 3. REAL PROBLEMS ROLEFIT AI SOLVES */}
       <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
         <div className="text-center max-w-2xl mx-auto mb-14">
           <h2 className="text-xs font-bold tracking-wider uppercase text-[#0284C7] mb-2">
@@ -417,7 +419,7 @@ const LandingPage = () => {
               Workflow
             </h2>
             <h3 className="text-2xl sm:text-3xl font-extrabold text-[#0F172A]">
-              How JobFit AI Works in 3 Simple Steps
+              How RoleFit AI Works in 3 Simple Steps
             </h3>
             <p className="text-sm text-[#475569] mt-2">
               Get recruiter-level feedback in under 30 seconds.
@@ -668,12 +670,9 @@ const LandingPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             
-            <div className="flex items-center gap-2.5">
-              <div className="h-8 w-8 rounded-lg bg-[#0284C7] flex items-center justify-center text-white">
-                <Briefcase className="h-4 w-4" />
-              </div>
-              <span className="font-bold text-base text-[#0F172A]">JobFit AI</span>
-              <span className="text-xs text-[#475569]">© {new Date().getFullYear()} JobFit AI. All rights reserved.</span>
+            <div className="flex items-center gap-3">
+              <Logo size="sm" showTagline={false} />
+              <span className="text-xs text-[#475569]">© {new Date().getFullYear()} RoleFit AI. All rights reserved.</span>
             </div>
 
             <div className="flex items-center gap-6 text-xs text-[#475569]">

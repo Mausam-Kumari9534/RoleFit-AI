@@ -633,7 +633,7 @@ exports.googleAuth = async (req, res) => {
 
         const googleId = payload.sub;
         const email = payload.email.trim().toLowerCase();
-        const fullName = payload.name || payload.given_name || 'JobFit Candidate';
+        const fullName = payload.name || payload.given_name || 'RoleFit Candidate';
         const avatar = payload.picture || '';
 
         // 1. Check if user already exists by googleId

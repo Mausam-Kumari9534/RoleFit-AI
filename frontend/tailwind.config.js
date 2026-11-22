@@ -13,9 +13,13 @@ export default {
           sky: '#BAE6FD',       // Sky
           primary: '#0284C7',   // Primary Blue
           primaryHover: '#0369a1',
+          navy: '#0F172A',      // Deep Navy
           text: '#0F172A',      // Primary text
           secondary: '#475569', // Secondary text
           border: '#E2E8F0',    // Borders
+          violet: '#7C3AED',    // Soft Violet Accent
+          violetLight: '#8B5CF6',
+          violetSoft: '#EDE9FE',
         }
       },
       fontFamily: {

@@ -1,5 +1,5 @@
 /**
- * HTTP Integration Test Suite for JobFit AI Phase 1 API Endpoints
+ * HTTP Integration Test Suite for RoleFit AI Phase 1 API Endpoints
  */
 const assert = require('assert');
 const express = require('express');

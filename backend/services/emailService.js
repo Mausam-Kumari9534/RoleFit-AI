@@ -24,22 +24,32 @@ exports.sendVerificationEmail = async (toEmail, token) => {
 
         const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
         const verificationUrl = `${frontendUrl}/verify-email/${token}`;
-        const fromEmail = process.env.EMAIL_FROM || 'MatchAI <onboarding@resend.dev>';
-        const subject = 'Verify your JobFit AI account';
+        const fromEmail = process.env.EMAIL_FROM || 'RoleFit AI <onboarding@resend.dev>';
+        const subject = 'Verify your RoleFit AI account';
         
         console.log(`[EmailService Debug] Recipient: ${maskEmail(toEmail)}`);
         console.log(`[EmailService Debug] EMAIL_FROM domain: ${extractDomain(fromEmail)}`);
         console.log('[EmailService Debug] RESEND_API_KEY is present at runtime.');
         
         const html = `
-            <p>Hi,</p>
-            <p>Thanks for creating your JobFit AI account.</p>
-            <p>Please verify your email address to activate your account.</p>
-            <a href="${verificationUrl}" style="background-color: #4F46E5; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; margin-top: 10px; margin-bottom: 10px;">Verify Email Address</a>
-            <p>Or copy and paste this link into your browser:</p>
-            <p><a href="${verificationUrl}">${verificationUrl}</a></p>
-            <p>This verification link will expire in 30 minutes.</p>
-            <p>If you did not create this account, you can ignore this email.</p>
+            <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 580px; margin: 0 auto; padding: 24px; color: #1e293b; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px;">
+                <div style="margin-bottom: 24px; text-align: left;">
+                    <h1 style="color: #0284c7; font-size: 22px; font-weight: 800; margin: 0; letter-spacing: -0.02em;">RoleFit <span style="color: #7c3aed;">AI</span></h1>
+                    <span style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: #0284c7; font-weight: 600;">AI-Powered Career & Resume Intelligence Platform</span>
+                </div>
+                <h2 style="font-size: 18px; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 12px;">Verify Your Email Address</h2>
+                <p style="font-size: 14px; line-height: 1.6; color: #475569; margin: 0 0 16px;">Thanks for creating your RoleFit AI account! Please click the button below to verify your email and activate your access:</p>
+                <div style="margin: 24px 0;">
+                    <a href="${verificationUrl}" style="background-color: #0284c7; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 8px; display: inline-block; font-size: 14px; font-weight: 600;">Verify Email Address</a>
+                </div>
+                <p style="font-size: 13px; line-height: 1.6; color: #64748b; margin: 0 0 8px;">Or copy and paste this link into your browser:</p>
+                <p style="font-size: 12px; line-height: 1.5; color: #0284c7; word-break: break-all; margin: 0 0 20px;"><a href="${verificationUrl}" style="color: #0284c7;">${verificationUrl}</a></p>
+                <div style="padding-top: 16px; border-top: 1px solid #f1f5f9; font-size: 12px; line-height: 1.6; color: #94a3b8;">
+                    <p style="margin: 0 0 6px;">This verification link will expire in 30 minutes.</p>
+                    <p style="margin: 0 0 10px;">If you did not create a RoleFit AI account, you can safely ignore this email.</p>
+                    <p style="margin: 0; font-size: 11px; color: #cbd5e1;">RoleFit AI • Understand Your Fit. Bridge Your Skill Gaps. Get Job-Ready.</p>
+                </div>
+            </div>
         `;
 
         const resend = new Resend(process.env.RESEND_API_KEY);
@@ -66,7 +76,7 @@ exports.sendVerificationEmail = async (toEmail, token) => {
     } catch (error) {
         console.error('[EmailService Debug] Error sending verification email:', error.message);
         console.log('--- [EmailService Debug] Flow Ended with Error ---\n');
-        throw error; // Throw so the controller knows it failed
+        throw error;
     }
 };
 
@@ -85,25 +95,26 @@ exports.sendPasswordResetEmail = async (toEmail, token) => {
         }
 
         const resetUrl = `${cleanFrontendUrl}/reset-password/${token}`;
-        const fromEmail = process.env.EMAIL_FROM || 'MatchAI <onboarding@resend.dev>';
-        const subject = 'Password Reset Request - MatchAI';
+        const fromEmail = process.env.EMAIL_FROM || 'RoleFit AI <onboarding@resend.dev>';
+        const subject = 'Password Reset Request - RoleFit AI';
 
         const html = `
             <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 580px; margin: 0 auto; padding: 24px; color: #1e293b; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px;">
                 <div style="margin-bottom: 24px; text-align: left;">
-                    <h1 style="color: #4f46e5; font-size: 20px; font-weight: 700; margin: 0;">MatchAI</h1>
-                    <span style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: #64748b; font-weight: 600;">Career Intelligence</span>
+                    <h1 style="color: #0284c7; font-size: 22px; font-weight: 800; margin: 0; letter-spacing: -0.02em;">RoleFit <span style="color: #7c3aed;">AI</span></h1>
+                    <span style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: #0284c7; font-weight: 600;">AI-Powered Career & Resume Intelligence Platform</span>
                 </div>
                 <h2 style="font-size: 18px; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 12px;">Reset Your Password</h2>
-                <p style="font-size: 14px; line-height: 1.6; color: #475569; margin: 0 0 16px;">We received a request to reset the password for your MatchAI account. Click the button below to choose a new password:</p>
+                <p style="font-size: 14px; line-height: 1.6; color: #475569; margin: 0 0 16px;">We received a request to reset the password for your RoleFit AI account. Click the button below to choose a new password:</p>
                 <div style="margin: 24px 0;">
-                    <a href="${resetUrl}" style="background-color: #4f46e5; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 8px; display: inline-block; font-size: 14px; font-weight: 600;">Reset Password</a>
+                    <a href="${resetUrl}" style="background-color: #0284c7; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 8px; display: inline-block; font-size: 14px; font-weight: 600;">Reset Password</a>
                 </div>
                 <p style="font-size: 13px; line-height: 1.6; color: #64748b; margin: 0 0 8px;">If the button above does not work, copy and paste this link into your browser:</p>
-                <p style="font-size: 12px; line-height: 1.5; color: #4f46e5; word-break: break-all; margin: 0 0 20px;"><a href="${resetUrl}" style="color: #4f46e5;">${resetUrl}</a></p>
+                <p style="font-size: 12px; line-height: 1.5; color: #0284c7; word-break: break-all; margin: 0 0 20px;"><a href="${resetUrl}" style="color: #0284c7;">${resetUrl}</a></p>
                 <div style="padding-top: 16px; border-top: 1px solid #f1f5f9; font-size: 12px; line-height: 1.6; color: #94a3b8;">
                     <p style="margin: 0 0 6px;">This link will expire in 20 minutes and can only be used once.</p>
-                    <p style="margin: 0;">If you did not request a password reset, you can safely ignore this email. Your password will not change until you access the link above and create a new one.</p>
+                    <p style="margin: 0 0 10px;">If you did not request a password reset, you can safely ignore this email. Your password will not change until you access the link above and create a new one.</p>
+                    <p style="margin: 0; font-size: 11px; color: #cbd5e1;">RoleFit AI • Understand Your Fit. Bridge Your Skill Gaps. Get Job-Ready.</p>
                 </div>
             </div>
         `;
@@ -144,21 +155,27 @@ exports.sendOtpEmail = async (toEmail, otp) => {
             throw new Error('RESEND_API_KEY is missing from environment variables.');
         }
 
-        const fromEmail = process.env.EMAIL_FROM || 'MatchAI <onboarding@resend.dev>';
-        const subject = 'Your Verification Code - JobFit AI';
+        const fromEmail = process.env.EMAIL_FROM || 'RoleFit AI <onboarding@resend.dev>';
+        const subject = 'Your Verification Code - RoleFit AI';
         
         console.log(`[EmailService Debug] Recipient: ${maskEmail(toEmail)}`);
         
         const html = `
-            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e5e7eb; border-radius: 8px;">
-                <h2 style="color: #4F46E5; text-align: center;">Verify Your Email</h2>
-                <p>Hi,</p>
-                <p>Thanks for registering with JobFit AI. Please use the verification code below to complete your registration:</p>
-                <div style="background-color: #f3f4f6; padding: 20px; text-align: center; border-radius: 6px; margin: 20px 0;">
-                    <h1 style="font-size: 36px; letter-spacing: 8px; color: #111827; margin: 0;">${otp}</h1>
+            <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 580px; margin: 0 auto; padding: 24px; color: #1e293b; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px;">
+                <div style="margin-bottom: 24px; text-align: left;">
+                    <h1 style="color: #0284c7; font-size: 22px; font-weight: 800; margin: 0; letter-spacing: -0.02em;">RoleFit <span style="color: #7c3aed;">AI</span></h1>
+                    <span style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: #0284c7; font-weight: 600;">AI-Powered Career & Resume Intelligence Platform</span>
                 </div>
-                <p style="color: #6b7280; font-size: 14px;">This code will expire in 5 minutes.</p>
-                <p style="color: #6b7280; font-size: 14px;">If you didn't request this code, you can safely ignore this email.</p>
+                <h2 style="font-size: 18px; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 12px;">Verify Your Email</h2>
+                <p style="font-size: 14px; line-height: 1.6; color: #475569; margin: 0 0 16px;">Thanks for registering with RoleFit AI! Please use the verification code below to complete your registration:</p>
+                <div style="background-color: #f0f9ff; border: 1px solid #bae6fd; padding: 20px; text-align: center; border-radius: 8px; margin: 20px 0;">
+                    <h1 style="font-size: 36px; letter-spacing: 8px; color: #0284c7; margin: 0; font-family: monospace;">${otp}</h1>
+                </div>
+                <p style="color: #64748b; font-size: 13px; line-height: 1.5;">This code will expire in 5 minutes.</p>
+                <p style="color: #64748b; font-size: 13px; line-height: 1.5;">If you did not request this verification code, you can safely ignore this email.</p>
+                <div style="padding-top: 16px; border-top: 1px solid #f1f5f9; margin-top: 20px; font-size: 11px; color: #94a3b8;">
+                    <p style="margin: 0;">RoleFit AI • Understand Your Fit. Bridge Your Skill Gaps. Get Job-Ready.</p>
+                </div>
             </div>
         `;
 
@@ -177,13 +194,13 @@ exports.sendOtpEmail = async (toEmail, otp) => {
             throw new Error(`Resend API Error: ${error.message}`);
         }
         
-        console.log(`[EmailService Debug] OTP email sent successfully. ID: ${data?.id}`);
+        console.log(`[EmailService Debug] OTP email sent successfully via Resend. ID: ${data?.id}`);
         console.log('--- [EmailService Debug] OTP Flow Ended ---\n');
         return true;
 
     } catch (error) {
         console.error('[EmailService Debug] Error sending OTP email:', error.message);
-        console.log('--- [EmailService Debug] OTP Flow Ended with Error ---\n');
+        console.log('--- [EmailService Debug] Flow Ended with Error ---\n');
         throw error;
     }
 };

@@ -32,7 +32,7 @@ const AnalyzePage = () => {
     'Parsing PDF text and structure in ephemeral memory...',
     'Mining job requirements and industry keywords...',
     'Running semantic comparison and scoring with Gemini AI...',
-    'Finalizing compatibility breakdown and saving report...'
+    'Finalizing RoleFit breakdown and saving report...'
   ];
 
   const handleDragOver = (e) => {
@@ -166,13 +166,13 @@ const AnalyzePage = () => {
         <div className="bg-white rounded-2xl border border-[#E2E8F0] p-6 sm:p-8 shadow-xs mb-8">
           <div className="flex items-center gap-2 text-xs font-semibold text-[#0284C7] uppercase tracking-wider mb-1">
             <Sparkles className="h-3.5 w-3.5" />
-            <span>AI Compatibility Analysis</span>
+            <span>RoleFit AI Match Analysis</span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-[#0F172A]">
             Analyze Resume Against Job Description
           </h1>
           <p className="text-sm text-[#475569] mt-1.5 leading-relaxed">
-            Upload your resume and paste the target job requirements to calculate your compatibility score, detect missing keywords, and get tailored recommendations.
+            Upload your resume and paste the target job requirements to calculate your RoleFit score, detect missing keywords, and get tailored recommendations.
           </p>
         </div>
 

@@ -1,5 +1,5 @@
 /**
- * JobFit AI - Phase 1 Complete Backend Integration & Security Test Suite
+ * RoleFit AI - Phase 1 Complete Backend Integration & Security Test Suite
  */
 const assert = require('assert');
 const mongoose = require('mongoose');
@@ -14,7 +14,7 @@ const pdfService = require('../services/pdfService');
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/matchai_test';
 
 async function runTests() {
-    console.log('--- Starting JobFit AI Phase 1 Test Suite ---');
+    console.log('--- Starting RoleFit AI Phase 1 Test Suite ---');
     
     // Connect to database
     await mongoose.connect(MONGO_URI);
@@ -29,7 +29,7 @@ async function runTests() {
         console.log('\n[Test 1] Testing User Model for Google-Only Auth...');
         const userA = await User.create({
             googleId: 'google_test_sub_user_a',
-            email: 'user_a@testjobfit.com',
+            email: 'user_a@testrolefit.com',
             fullName: 'User Alpha',
             avatar: 'https://example.com/avatar_a.png',
             emailVerified: true,
@@ -42,7 +42,7 @@ async function runTests() {
 
         const userB = await User.create({
             googleId: 'google_test_sub_user_b',
-            email: 'user_b@testjobfit.com',
+            email: 'user_b@testrolefit.com',
             fullName: 'User Beta',
             avatar: 'https://example.com/avatar_b.png',
             emailVerified: true,

@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
-import { Briefcase, AlertCircle, Loader2, Sparkles, CheckCircle2, FileCheck2, Target, Zap } from 'lucide-react';
+import { AlertCircle, Loader2, Sparkles, CheckCircle2, FileCheck2, Target, Zap } from 'lucide-react';
+import Logo from '../components/Logo';
 
 const SignupPage = () => {
   const { user, loginWithGoogle } = useContext(AuthContext);
@@ -119,19 +120,9 @@ const SignupPage = () => {
       <div className="w-full max-w-md">
         
         {/* Brand Logo Header */}
-        <div className="text-center mb-8">
-          <Link to="/" className="inline-flex items-center gap-2.5 group">
-            <div className="h-11 w-11 rounded-xl bg-[#0284C7] flex items-center justify-center text-white shadow-sm shadow-sky-200 group-hover:scale-105 transition-transform">
-              <Briefcase className="h-6 w-6" />
-            </div>
-            <div className="text-left">
-              <span className="font-bold text-xl tracking-tight text-[#0F172A] block leading-none">
-                JobFit AI
-              </span>
-              <span className="text-[11px] font-medium text-[#0284C7] tracking-wider uppercase">
-                Career Intelligence
-              </span>
-            </div>
+        <div className="flex justify-center mb-8">
+          <Link to="/" className="inline-flex hover:opacity-95 transition-opacity" aria-label="RoleFit AI Home">
+            <Logo size="lg" tagline="Career Intelligence" />
           </Link>
         </div>
 
@@ -153,7 +144,7 @@ const SignupPage = () => {
           <div className="bg-[#F0F9FF] border border-[#BAE6FD] rounded-xl p-3.5 mb-6 text-left space-y-2">
             <div className="flex items-center gap-2 text-xs text-[#0F172A] font-medium">
               <FileCheck2 className="h-4 w-4 text-[#0284C7] shrink-0" />
-              <span>Instant ATS Compatibility Score</span>
+              <span>Instant RoleFit Compatibility Score</span>
             </div>
             <div className="flex items-center gap-2 text-xs text-[#0F172A] font-medium">
               <Target className="h-4 w-4 text-[#0284C7] shrink-0" />
@@ -220,7 +211,7 @@ const SignupPage = () => {
 
         {/* Footer legal links */}
         <div className="mt-8 text-center text-xs text-[#475569] space-x-4">
-          <span>By continuing, you agree to JobFit AI's</span>
+          <span>By continuing, you agree to RoleFit AI's</span>
           <br className="sm:hidden" />
           <Link to="/#terms" className="underline hover:text-[#0F172A]">Terms of Service</Link>
           <span>•</span>

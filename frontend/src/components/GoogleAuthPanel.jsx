@@ -205,7 +205,7 @@ const GoogleAuthPanel = ({ mode = 'login' }) => {
             ) : (
               <>
                 Welcome back to <br className="hidden sm:inline" />
-                <span className="text-indigo-600">MatchAI Workspace.</span>
+                <span className="text-indigo-600">RoleFit AI Workspace.</span>
               </>
             )}
           </h1>
@@ -221,7 +221,7 @@ const GoogleAuthPanel = ({ mode = 'login' }) => {
                 <FileCheck2 className="h-4 w-4" />
               </div>
               <div>
-                <h4 className="text-sm font-semibold text-slate-900">Instant Compatibility Score</h4>
+                <h4 className="text-sm font-semibold text-slate-900">Instant RoleFit Compatibility Score</h4>
                 <p className="text-xs text-slate-500">Benchmark your resume against job requirements with precise scoring.</p>
               </div>
             </div>
@@ -263,7 +263,7 @@ const GoogleAuthPanel = ({ mode = 'login' }) => {
                 <Briefcase className="h-6 w-6 text-indigo-600" />
               </div>
               <h2 className="text-2xl font-bold tracking-tight text-slate-900">
-                {isSignUp ? 'Create your account' : 'Sign in to MatchAI'}
+                {isSignUp ? 'Create your account' : 'Sign in to RoleFit AI'}
               </h2>
               <p className="text-sm text-slate-500 mt-1.5">
                 {isSignUp 
@@ -393,7 +393,7 @@ const GoogleAuthPanel = ({ mode = 'login' }) => {
                     </>
                   ) : (
                     <>
-                      New to MatchAI?{' '}
+                      New to RoleFit AI?{' '}
                       <Link to="/signup" className="font-semibold text-indigo-600 hover:text-indigo-700 hover:underline">
                         Create an account
                       </Link>
@@ -406,7 +406,7 @@ const GoogleAuthPanel = ({ mode = 'login' }) => {
 
             {/* Legal / Terms */}
             <p className="mt-8 text-center text-xs text-slate-400 leading-normal">
-              By continuing, you agree to MatchAI's{' '}
+              By continuing, you agree to RoleFit AI's{' '}
               <span className="text-slate-500 hover:text-slate-700 cursor-pointer">Terms of Service</span>{' '}
               and{' '}
               <span className="text-slate-500 hover:text-slate-700 cursor-pointer">Privacy Policy</span>.

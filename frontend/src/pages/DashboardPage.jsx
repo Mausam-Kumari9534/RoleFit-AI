@@ -81,13 +81,13 @@ const DashboardPage = () => {
             <div className="space-y-1">
               <div className="flex items-center gap-2 text-xs font-semibold text-[#0284C7] uppercase tracking-wider">
                 <Sparkles className="h-3.5 w-3.5" />
-                <span>Candidate Workspace</span>
+                <span>RoleFit AI Workspace</span>
               </div>
               <h1 className="text-2xl sm:text-3xl font-extrabold text-[#0F172A]">
                 Welcome back, {user?.fullName || 'Job Seeker'}!
               </h1>
               <p className="text-sm text-[#475569]">
-                Review your saved resume match reports or run an analysis against a new job description.
+                Review your saved RoleFit match reports or run an analysis against a new job description.
               </p>
             </div>
 
@@ -193,7 +193,7 @@ const DashboardPage = () => {
               </div>
               <h3 className="text-lg font-bold text-[#0F172A]">No resume analyses yet</h3>
               <p className="text-xs text-[#475569] leading-relaxed">
-                Upload your resume in PDF format and paste a job description to receive your first AI compatibility breakdown.
+                Upload your resume in PDF format and paste a job description to receive your first RoleFit AI match analysis and skill gap diagnosis.
               </p>
               <div className="pt-2">
                 <Link

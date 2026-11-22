@@ -79,14 +79,19 @@ const AnalysisResultsPage = () => {
   };
 
   const handlePrint = () => {
+    const originalTitle = document.title;
+    document.title = `RoleFit_AI_Report_${(report?.jobTitle || 'Analysis').replace(/[^a-zA-Z0-9]/g, '_')}`;
     window.print();
+    setTimeout(() => {
+      document.title = originalTitle;
+    }, 1000);
   };
 
   if (loading) {
     return (
       <div className="min-h-screen bg-[#F0F9FF] flex flex-col items-center justify-center p-4">
         <Loader2 className="h-8 w-8 text-[#0284C7] animate-spin mb-3" />
-        <p className="text-sm font-semibold text-[#0F172A]">Loading Analysis Report...</p>
+        <p className="text-sm font-semibold text-[#0F172A]">Loading RoleFit AI Analysis Report...</p>
       </div>
     );
   }
@@ -168,7 +173,7 @@ const AnalysisResultsPage = () => {
             <div>
               <div className="flex items-center gap-2 text-xs font-semibold text-[#0284C7] uppercase tracking-wider mb-1">
                 <Sparkles className="h-3.5 w-3.5" />
-                <span>AI Compatibility Report</span>
+                <span>RoleFit AI Match Report</span>
               </div>
               <h1 className="text-2xl sm:text-3xl font-extrabold text-[#0F172A]">
                 {report.jobTitle || 'Target Role Analysis'}
@@ -193,7 +198,7 @@ const AnalysisResultsPage = () => {
             {/* Score Ring / Block */}
             <div className="bg-[#F0F9FF] border border-[#BAE6FD] rounded-2xl p-5 text-center min-w-[170px] shadow-2xs shrink-0">
               <span className="text-xs font-bold text-[#475569] block mb-1">
-                Compatibility Score
+                RoleFit Match Score
               </span>
               <span className="text-4xl sm:text-5xl font-black text-[#0284C7]">
                 {score}%

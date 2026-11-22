@@ -1,7 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Briefcase, User, LogOut, Menu, X, ArrowRight, LayoutDashboard, FileText } from 'lucide-react';
+import { User, LogOut, Menu, X, ArrowRight, LayoutDashboard, FileText } from 'lucide-react';
 import { AuthContext } from '../context/AuthContext';
+import Logo from './Logo';
 
 const Navbar = () => {
   const location = useLocation();
@@ -51,19 +52,10 @@ const Navbar = () => {
           <div className="flex items-center gap-6 lg:gap-10">
             <Link 
               to="/" 
-              className="flex items-center gap-2.5 text-[#0F172A] hover:opacity-90 transition-opacity group shrink-0"
+              className="hover:opacity-95 transition-opacity group shrink-0"
+              aria-label="RoleFit AI Home"
             >
-              <div className="h-9 w-9 rounded-xl bg-[#0284C7] flex items-center justify-center text-white shadow-sm shadow-sky-100 group-hover:scale-105 transition-transform">
-                <Briefcase className="h-5 w-5" />
-              </div>
-              <div className="flex flex-col">
-                <span className="font-bold text-base tracking-tight text-[#0F172A] leading-none">
-                  JobFit AI
-                </span>
-                <span className="text-[10px] font-semibold text-[#0284C7] tracking-wider uppercase mt-0.5">
-                  Career Intelligence
-                </span>
-              </div>
+              <Logo size="md" tagline="Career Intelligence" />
             </Link>
 
             {/* Desktop Navigation Links */}

@@ -140,7 +140,7 @@ const ResetPasswordPage = () => {
               Reset Your Password
             </h1>
             <p className="text-sm text-slate-500 mt-1.5 leading-relaxed">
-              Create a new secure password for your MatchAI account.
+              Create a new secure password for your RoleFit AI account.
             </p>
           </div>
 

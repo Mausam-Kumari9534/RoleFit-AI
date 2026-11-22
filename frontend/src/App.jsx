@@ -10,6 +10,7 @@ import SignupPage from './pages/SignupPage';
 import ResumeBuilderPage from './pages/ResumeBuilderPage';
 import { AuthProvider, AuthContext } from './context/AuthContext';
 import { Loader2 } from 'lucide-react';
+import Logo from './components/Logo';
 
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
@@ -18,9 +19,12 @@ const ProtectedRoute = ({ children }) => {
   if (loading) {
     return (
       <div className="flex min-h-screen bg-[#F0F9FF] items-center justify-center">
-        <div className="flex flex-col items-center gap-3">
-          <Loader2 className="h-8 w-8 text-[#0284C7] animate-spin" />
-          <span className="text-sm font-semibold text-[#0F172A]">Loading workspace...</span>
+        <div className="flex flex-col items-center gap-4">
+          <Logo size="lg" showTagline={false} />
+          <div className="flex items-center gap-2 text-sm font-semibold text-[#0F172A]">
+            <Loader2 className="h-4 w-4 text-[#0284C7] animate-spin" />
+            <span>Loading RoleFit AI workspace...</span>
+          </div>
         </div>
       </div>
     );
@@ -39,8 +43,9 @@ const PublicOnlyRoute = ({ children }) => {
   if (loading) {
     return (
       <div className="flex min-h-screen bg-[#F0F9FF] items-center justify-center">
-        <div className="flex flex-col items-center gap-3">
-          <Loader2 className="h-8 w-8 text-[#0284C7] animate-spin" />
+        <div className="flex flex-col items-center gap-4">
+          <Logo size="lg" showTagline={false} />
+          <Loader2 className="h-5 w-5 text-[#0284C7] animate-spin" />
         </div>
       </div>
     );
